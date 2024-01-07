@@ -1,4 +1,4 @@
-package com.academy.fourtk.milhas.dtos
+package com.academy.fourtk.milhas.dtos.responses
 
 import com.academy.fourtk.milhas.dtos.entities.Ok
 import com.academy.fourtk.milhas.exceptions.BadRequestErrorResponse

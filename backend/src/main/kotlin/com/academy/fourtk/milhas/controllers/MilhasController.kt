@@ -1,6 +1,11 @@
 package com.academy.fourtk.milhas.controllers
 
 import com.academy.fourtk.milhas.dtos.*
+import com.academy.fourtk.milhas.dtos.requesties.MilesRequest
+import com.academy.fourtk.milhas.dtos.requesties.multiplierRequest
+import com.academy.fourtk.milhas.dtos.responses.CardMileAccumulationResponse
+import com.academy.fourtk.milhas.dtos.responses.MilesResponse
+import com.academy.fourtk.milhas.dtos.responses.MultiplierResponse
 import com.academy.fourtk.milhas.enums.ErrorType
 import com.academy.fourtk.milhas.exceptions.BadRequestErrorResponse
 import com.academy.fourtk.milhas.services.IMilesService
@@ -45,7 +50,7 @@ class MilesController(val IMilesService: IMilesService) {
     }
 
     @PostMapping("calculate_cardmileaccumulation")
-    fun calculateCardMileAccumulation(@RequestBody data: DataCardMileAccumulation): CardMileAccumulationResponse {
+    fun calculateCardMileAccumulation(@RequestBody data: CardMileAccumulationRequest): CardMileAccumulationResponse {
             return IMilesService.calculateCardMileAccumulation(data)
     }
 

@@ -1,8 +1,8 @@
 package com.academy.fourtk.milhas.builders
 
 import com.academy.fourtk.milhas.documents.ProgramDocument
-import com.academy.fourtk.milhas.dtos.ProgramRequest
-import com.academy.fourtk.milhas.dtos.ProgramResponse
+import com.academy.fourtk.milhas.dtos.requesties.ProgramRequest
+import com.academy.fourtk.milhas.dtos.responses.ProgramResponse
 import com.academy.fourtk.milhas.entitites.Program
 import java.time.LocalDateTime
 

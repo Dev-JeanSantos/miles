@@ -2,8 +2,8 @@ package com.academy.fourtk.milhas.services.impl
 
 import com.academy.fourtk.milhas.builders.programBuilder
 import com.academy.fourtk.milhas.builders.programResponseBuilder
-import com.academy.fourtk.milhas.dtos.ProgramRequest
-import com.academy.fourtk.milhas.dtos.ProgramResponse
+import com.academy.fourtk.milhas.dtos.requesties.ProgramRequest
+import com.academy.fourtk.milhas.dtos.responses.ProgramResponse
 import com.academy.fourtk.milhas.exceptions.NotFoundException
 import com.academy.fourtk.milhas.repositories.ProgramRepository
 import com.academy.fourtk.milhas.services.IProgramService

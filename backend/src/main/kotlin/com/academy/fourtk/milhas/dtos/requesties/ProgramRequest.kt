@@ -1,9 +1,10 @@
-package com.academy.fourtk.milhas.dtos
+package com.academy.fourtk.milhas.dtos.requesties
 
 import com.academy.fourtk.milhas.enums.ProgramType
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class ProgramRequest (
+
     val name: String,
     @JsonProperty("member_number")
     val memberNumber: String,

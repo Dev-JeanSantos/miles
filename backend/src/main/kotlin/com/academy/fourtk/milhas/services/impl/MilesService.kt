@@ -2,6 +2,11 @@ package com.academy.fourtk.milhas.services.impl
 
 import com.academy.fourtk.milhas.dtos.*
 import com.academy.fourtk.milhas.dtos.entities.Ok
+import com.academy.fourtk.milhas.dtos.requesties.MilesRequest
+import com.academy.fourtk.milhas.dtos.requesties.multiplierRequest
+import com.academy.fourtk.milhas.dtos.responses.CardMileAccumulationResponse
+import com.academy.fourtk.milhas.dtos.responses.MilesResponse
+import com.academy.fourtk.milhas.dtos.responses.MultiplierResponse
 import com.academy.fourtk.milhas.services.IMilesService
 import org.springframework.stereotype.Service
 
@@ -15,7 +20,7 @@ class MilesService: IMilesService {
         return  MultiplierResponse(multiplier = calcularMultiplos(request), ok = Ok())
     }
 
-    override fun calculateCardMileAccumulation(data: DataCardMileAccumulation): CardMileAccumulationResponse {
+    override fun calculateCardMileAccumulation(data: CardMileAccumulationRequest): CardMileAccumulationResponse {
        return CardMileAccumulationResponse(
            scoreReceivedByMonth = ((data.cardScore * data.invoiceAmount) / DOLAR).toInt(),
            scoreReceivedByYear = (((data.cardScore * data.invoiceAmount) / DOLAR) * YEARL).toInt()

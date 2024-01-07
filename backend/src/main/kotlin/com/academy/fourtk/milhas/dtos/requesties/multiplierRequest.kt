@@ -1,4 +1,4 @@
-package com.academy.fourtk.milhas.dtos
+package com.academy.fourtk.milhas.dtos.requesties
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

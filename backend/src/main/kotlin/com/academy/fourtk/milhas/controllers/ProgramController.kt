@@ -1,8 +1,9 @@
 package com.academy.fourtk.milhas.controllers
 
-import com.academy.fourtk.milhas.dtos.ProgramRequest
-import com.academy.fourtk.milhas.dtos.ProgramResponse
+import com.academy.fourtk.milhas.dtos.requesties.ProgramRequest
+import com.academy.fourtk.milhas.dtos.responses.ProgramResponse
 import com.academy.fourtk.milhas.services.IProgramService
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.*
 
 @RestController
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 class ProgramController(val IProgramService: IProgramService) {
 
     @PostMapping
-    fun createProgram(@RequestBody request: ProgramRequest){
+    fun createProgram(@Valid @RequestBody request: ProgramRequest){
         return IProgramService.create(request)
     }
 
