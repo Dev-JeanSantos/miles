@@ -10,9 +10,9 @@ data class ProgramResponse (
     val memberNumber: String,
     val points: Int? = null,
     @JsonProperty("official_value_of_million")
-    val officialValueOfMillion: Int,
+    val officialValueOfMillion: Double,
     @JsonProperty("unofficial_value_of_million")
-    val unofficialValueOfMillion: Int,
+    val unofficialValueOfMillion: Double,
     @JsonProperty("program_type")
     val programType: ProgramType,
     @JsonProperty("start_date")

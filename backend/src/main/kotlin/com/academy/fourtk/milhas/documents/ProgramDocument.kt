@@ -11,8 +11,8 @@ data class ProgramDocument(
     val name: String,
     val memberNumber: String,
     val points: Int? =  null,
-    val officialValueOfMillion: Int,
-    val unofficialValueOfMillion: Int,
+    val officialValueOfMillion: Double,
+    val unofficialValueOfMillion: Double,
     val programType: ProgramType,
     val version: Int? = null
 )

@@ -1,6 +1,6 @@
 package com.academy.fourtk.milhas.services.impl
 
-import com.academy.fourtk.milhas.dtos.*
+import com.academy.fourtk.milhas.dtos.CardMileAccumulationRequest
 import com.academy.fourtk.milhas.dtos.entities.Ok
 import com.academy.fourtk.milhas.dtos.requesties.MilesRequest
 import com.academy.fourtk.milhas.dtos.requesties.multiplierRequest
@@ -9,11 +9,12 @@ import com.academy.fourtk.milhas.dtos.responses.MilesResponse
 import com.academy.fourtk.milhas.dtos.responses.MultiplierResponse
 import com.academy.fourtk.milhas.services.IMilesService
 import org.springframework.stereotype.Service
+import java.math.RoundingMode
 
 @Service
 class MilesService: IMilesService {
     override fun calculate(milesRequest: MilesRequest): MilesResponse {
-        return MilesResponse(valueOfMillion = calcularMilhas(milesRequest), program = milesRequest.program, ok = Ok())
+        return MilesResponse(valueOfMillion = calcularMilhas(milesRequest).toBigDecimal().setScale(2, RoundingMode.UP), program = milesRequest.program, ok = Ok())
     }
 
     override fun calculateMultiplier(request: multiplierRequest): MultiplierResponse {
@@ -32,7 +33,7 @@ class MilesService: IMilesService {
     }
 
     private fun calcularMilhas(milesRequest: MilesRequest): Double {
-        return ((milesRequest.totalPurchases / milesRequest.numberPoints) * 1000)
+        return (milesRequest.totalPurchases / milesRequest.numberPoints) * 1000
     }
 
 

@@ -14,8 +14,8 @@ data class Program(
     val name: String,
     val memberNumber: String,
     val points: Int? =  null,
-    val officialValueOfMillion: Int,
-    val unofficialValueOfMillion: Int,
+    val officialValueOfMillion: Double,
+    val unofficialValueOfMillion: Double,
     @Enumerated(EnumType.STRING)
     val programType: ProgramType
 )
