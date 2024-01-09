@@ -1,4 +1,4 @@
-package dtos
+package com.academy.fourtk.milhas.exceptions.dtos
 
 import java.time.LocalDateTime
 

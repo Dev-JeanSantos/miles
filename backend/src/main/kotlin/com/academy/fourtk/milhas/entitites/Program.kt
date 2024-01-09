@@ -8,7 +8,7 @@ import java.time.LocalDateTime
 data class Program(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
+    val program_id: Long? = null,
     val startDate: LocalDateTime,
     val endDate: LocalDateTime? = null,
     val name: String,
@@ -17,5 +17,9 @@ data class Program(
     val officialValueOfMillion: Double,
     val unofficialValueOfMillion: Double,
     @Enumerated(EnumType.STRING)
-    val programType: ProgramType
+    val programType: ProgramType,
+
+    @OneToMany(mappedBy = "program",  fetch = FetchType.EAGER)
+    val miles: List<Miles>? = null
+
 )

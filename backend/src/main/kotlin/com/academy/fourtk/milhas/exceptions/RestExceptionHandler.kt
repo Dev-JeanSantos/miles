@@ -1,6 +1,6 @@
 package com.academy.fourtk.milhas.exceptions
 
-import dtos.ErrorView
+import com.academy.fourtk.milhas.exceptions.dtos.ErrorView
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.MethodArgumentNotValidException

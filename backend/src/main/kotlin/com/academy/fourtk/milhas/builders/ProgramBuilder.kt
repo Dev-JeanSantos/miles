@@ -12,7 +12,7 @@ fun programBuilder(programRequest: ProgramRequest) = Program(
     memberNumber = programRequest.memberNumber,
     officialValueOfMillion = programRequest.officialValueOfMillion,
     unofficialValueOfMillion = programRequest.unofficialValueOfMillion,
-    programType = programRequest.programType
+    programType = programRequest.programType,
 )
 
 fun programResponseBuilder(program: Program) = ProgramResponse(
