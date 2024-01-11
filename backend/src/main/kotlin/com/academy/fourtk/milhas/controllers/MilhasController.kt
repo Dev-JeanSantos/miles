@@ -23,17 +23,7 @@ class MilesController(val IMilesService: IMilesService) {
 
     @PostMapping("calculate_thousand")
     fun calculateThousand(@RequestBody milesRequest: MilesRequest): MilesResponse {
-
-        return try {
-            return IMilesService.calculate(milesRequest)
-        } catch (e: Exception) {
-            MilesResponse.of(
-                BadRequestErrorResponse(
-                    ErrorType.INVALID_PAYLOAD,
-                    e.message
-                )
-            )
-        }
+        return IMilesService.calculate(milesRequest)
     }
 
     @PostMapping("calculate_multiplier")
@@ -50,6 +40,7 @@ class MilesController(val IMilesService: IMilesService) {
             )
         }
     }
+
     @PostMapping("lancar_milhar")
     fun calculateCardMileAccumulation(@RequestBody data: CardMileAccumulationRequest): CardMileAccumulationResponse {
         return IMilesService.calculateCardMileAccumulation(data)

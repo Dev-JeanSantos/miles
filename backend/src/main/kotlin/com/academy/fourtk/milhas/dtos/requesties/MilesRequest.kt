@@ -8,5 +8,7 @@ data class MilesRequest(
     @JsonProperty("number_points")
     val numberPoints: Int,
     @JsonProperty("total_purchases")
-    val totalPurchases: Double
+    val totalPurchases: Double,
+    @JsonProperty("bonus_percentage")
+    val bonusPercentage: Double
 )
