@@ -11,55 +11,83 @@ import com.academy.fourtk.milhas.dtos.responses.CardMileAccumulationResponse
 import com.academy.fourtk.milhas.dtos.responses.MilesResponse
 import com.academy.fourtk.milhas.dtos.responses.MultiplierResponse
 import com.academy.fourtk.milhas.dtos.responses.PayloadMilesResponse
+import com.academy.fourtk.milhas.enums.StatusBuyMiles
 import com.academy.fourtk.milhas.exceptions.NotFoundException
 import com.academy.fourtk.milhas.repositories.MilesRepository
 import com.academy.fourtk.milhas.repositories.ProgramRepository
 import com.academy.fourtk.milhas.services.IMilesService
 import org.springframework.stereotype.Service
+import java.math.BigDecimal
 import java.math.RoundingMode
 
 @Service
 class MilesService(
     private val programRepository: ProgramRepository,
     private val repository: MilesRepository
-): IMilesService {
+) : IMilesService {
     override fun calculate(milesRequest: MilesRequest): MilesResponse {
         val bonusPoints = (milesRequest.numberPoints * milesRequest.bonusPercentage) / 100
         val totalPoints = (milesRequest.numberPoints + bonusPoints).toInt()
 
-        val valueOfMiles = calcularMilhas(milesRequest, pointsTotal = totalPoints).toBigDecimal().setScale(2, RoundingMode.UP)
+        val valueOfMiles =
+            calcularMilhas(milesRequest, pointsTotal = totalPoints).toBigDecimal().setScale(2, RoundingMode.UP)
 
         val possibleProgram = programRepository.findByName(milesRequest.program.name)
         val program = possibleProgram.orElseThrow { NotFoundException("Program ${milesRequest.program} not found") }
 
-        var message: String = ""
+        val statusBuyMiles = when (program.name) {
+            "SMILES" ->
+                when (comparePoints(valueOfMiles, program.unofficialValueOfMillion.toBigDecimal())) {
+                    true -> StatusBuyMiles.ITS_VERY_WORTH_IT
+                    false -> StatusBuyMiles.NOT_WORTH_IT
+                }
 
-        when(program.name){
-            "SMILES" -> if (valueOfMiles <= program.unofficialValueOfMillion.toBigDecimal()){
-                message = "ENJOY IT, IT’S WORTH IT"
-            } else{
-                println("nao compensa")
+            "LATAM_PASS" ->
+                when (comparePoints(valueOfMiles, program.unofficialValueOfMillion.toBigDecimal())) {
+                    true -> StatusBuyMiles.ITS_VERY_WORTH_IT
+                    false -> StatusBuyMiles.NOT_WORTH_IT
+                }
+
+            "TUDO_AZUL" ->
+                when (comparePoints(valueOfMiles, program.unofficialValueOfMillion.toBigDecimal())) {
+                    true -> StatusBuyMiles.ITS_VERY_WORTH_IT
+                    false -> StatusBuyMiles.NOT_WORTH_IT
+                }
+
+            "MILES_GO" ->
+                when (comparePoints(valueOfMiles, program.unofficialValueOfMillion.toBigDecimal())) {
+                    true -> StatusBuyMiles.ITS_VERY_WORTH_IT
+                    false -> StatusBuyMiles.NOT_WORTH_IT
+                }
+
+            "IBERIA" ->
+                when (comparePoints(valueOfMiles, program.unofficialValueOfMillion.toBigDecimal())) {
+                    true -> StatusBuyMiles.ITS_VERY_WORTH_IT
+                    false -> StatusBuyMiles.NOT_WORTH_IT
+                }
+
+            else -> {
+               StatusBuyMiles.PROGRAM_NOT_FOUND
             }
-
-            else -> {}
         }
 
         return MilesResponse(
-            valueOfMillion = valueOfMiles  ,
-            totalPoints = totalPoints ,
+            valueOfMillion = valueOfMiles,
+            totalPoints = totalPoints,
             program = milesRequest.program,
-            message = message)
+            statusBuyMiles = statusBuyMiles
+        )
     }
 
     override fun calculateMultiplier(request: multiplierRequest): MultiplierResponse {
-        return  MultiplierResponse(multiplier = calcularMultiplos(request), ok = Ok())
+        return MultiplierResponse(multiplier = calcularMultiplos(request), ok = Ok())
     }
 
     override fun calculateCardMileAccumulation(data: CardMileAccumulationRequest): CardMileAccumulationResponse {
-       return CardMileAccumulationResponse(
-           scoreReceivedByMonth = ((data.cardScore * data.invoiceAmount) / DOLAR).toInt(),
-           scoreReceivedByYear = (((data.cardScore * data.invoiceAmount) / DOLAR) * YEARL).toInt()
-       )
+        return CardMileAccumulationResponse(
+            scoreReceivedByMonth = ((data.cardScore * data.invoiceAmount) / DOLAR).toInt(),
+            scoreReceivedByYear = (((data.cardScore * data.invoiceAmount) / DOLAR) * YEARL).toInt()
+        )
     }
 
     override fun registerMiles(data: PayloadMilesRequest): PayloadMilesResponse {
@@ -74,9 +102,14 @@ class MilesService(
     private fun calcularMilhas(milesRequest: MilesRequest, pointsTotal: Int): Double {
         return (milesRequest.totalPurchases / pointsTotal) * 1000
     }
+    private fun comparePoints(valueOfMiles: BigDecimal, unofficialValueOfMillion: BigDecimal): Boolean {
+        return valueOfMiles <= unofficialValueOfMillion
+    }
 
 
-    companion object{
+
+
+    companion object {
         const val YEARL: Int = 12
         const val DOLAR: Double = 5.0
     }
