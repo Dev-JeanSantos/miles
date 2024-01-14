@@ -1,6 +1,6 @@
 package com.academy.fourtk.milhas.controllers
 
-import com.academy.fourtk.milhas.dtos.*
+import com.academy.fourtk.milhas.dtos.CardMileAccumulationRequest
 import com.academy.fourtk.milhas.dtos.requesties.MilesRequest
 import com.academy.fourtk.milhas.dtos.requesties.PayloadMilesRequest
 import com.academy.fourtk.milhas.dtos.requesties.multiplierRequest
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1/miles/")
 class MilesController(val IMilesService: IMilesService) {
-
     @PostMapping("calculate_thousand")
     fun calculateThousand(@RequestBody milesRequest: MilesRequest): MilesResponse {
         return IMilesService.calculate(milesRequest)
@@ -50,5 +49,4 @@ class MilesController(val IMilesService: IMilesService) {
     fun registerMiles(@RequestBody data: PayloadMilesRequest): PayloadMilesResponse {
         return IMilesService.registerMiles(data)
     }
-
 }

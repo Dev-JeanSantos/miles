@@ -1,7 +1,9 @@
 package com.academy.fourtk.milhas.builders
 
 import com.academy.fourtk.milhas.dtos.requesties.PayloadMilesRequest
+import com.academy.fourtk.milhas.dtos.responses.PayloadEmissionResponse
 import com.academy.fourtk.milhas.dtos.responses.PayloadMilesResponse
+import com.academy.fourtk.milhas.entitites.Emission
 import com.academy.fourtk.milhas.entitites.Miles
 import com.academy.fourtk.milhas.exceptions.NotFoundException
 import com.academy.fourtk.milhas.repositories.ProgramRepository
@@ -24,4 +26,13 @@ fun milesResponseBuilder(miles: Miles) = PayloadMilesResponse(
     amountPaid = miles.amountPaid,
     thousandCost = miles.thousandCost,
     startDate = formatDate(miles.startDate),
+)
+
+
+fun payloadResponseBuilder(emission: Emission) = PayloadEmissionResponse(
+     totalPoints = emission.totalPoints,
+     totalConversionCost = emission.totalConversionCost,
+     totalCashValue = emission.totalCashValue,
+     passengerNumbers = emission.passengerNumbers,
+     statusFlightEmissions = emission.statusFlightEmissions
 )

@@ -1,6 +1,6 @@
 package com.academy.fourtk.milhas.services
 
-import com.academy.fourtk.milhas.dtos.*
+import com.academy.fourtk.milhas.dtos.CardMileAccumulationRequest
 import com.academy.fourtk.milhas.dtos.requesties.MilesRequest
 import com.academy.fourtk.milhas.dtos.requesties.PayloadMilesRequest
 import com.academy.fourtk.milhas.dtos.requesties.multiplierRequest
@@ -14,5 +14,4 @@ interface IMilesService {
     fun calculateMultiplier(request: multiplierRequest): MultiplierResponse
     fun calculateCardMileAccumulation(data: CardMileAccumulationRequest): CardMileAccumulationResponse
     fun registerMiles(data: PayloadMilesRequest): PayloadMilesResponse
-
 }

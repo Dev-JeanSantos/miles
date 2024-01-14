@@ -23,14 +23,14 @@ import java.math.RoundingMode
 @Service
 class MilesService(
     private val programRepository: ProgramRepository,
-    private val repository: MilesRepository
+    private val repository: MilesRepository,
 ) : IMilesService {
     override fun calculate(milesRequest: MilesRequest): MilesResponse {
         val bonusPoints = (milesRequest.numberPoints * milesRequest.bonusPercentage) / 100
         val totalPoints = (milesRequest.numberPoints + bonusPoints).toInt()
 
         val valueOfMiles =
-            calcularMilhas(milesRequest, pointsTotal = totalPoints).toBigDecimal().setScale(2, RoundingMode.UP)
+            calculateMiles(milesRequest.totalPurchases, pointsTotal = totalPoints).toBigDecimal().setScale(2, RoundingMode.UP)
 
         val possibleProgram = programRepository.findByName(milesRequest.program.name)
         val program = possibleProgram.orElseThrow { NotFoundException("Program ${milesRequest.program} not found") }
@@ -80,7 +80,7 @@ class MilesService(
     }
 
     override fun calculateMultiplier(request: multiplierRequest): MultiplierResponse {
-        return MultiplierResponse(multiplier = calcularMultiplos(request), ok = Ok())
+        return MultiplierResponse(multiplier = calculateMultiples(request), ok = Ok())
     }
 
     override fun calculateCardMileAccumulation(data: CardMileAccumulationRequest): CardMileAccumulationResponse {
@@ -94,19 +94,16 @@ class MilesService(
         val miles = repository.save(milesBuilder(data, programRepository))
         return milesResponseBuilder(miles)
     }
-
-    private fun calcularMultiplos(request: multiplierRequest): Double {
+    private fun calculateMultiples(request: multiplierRequest): Double {
         return (request.totalMiles / request.totalPurchases)
     }
 
-    private fun calcularMilhas(milesRequest: MilesRequest, pointsTotal: Int): Double {
-        return (milesRequest.totalPurchases / pointsTotal) * 1000
+    private fun calculateMiles(totalPurchases: Double, pointsTotal: Int): Double {
+        return (totalPurchases / pointsTotal) * 1000
     }
     private fun comparePoints(valueOfMiles: BigDecimal, unofficialValueOfMillion: BigDecimal): Boolean {
         return valueOfMiles <= unofficialValueOfMillion
     }
-
-
 
 
     companion object {
