@@ -1,7 +1,7 @@
 package com.academy.fourtk.milhas.services.impl
 
-import com.academy.fourtk.milhas.builders.programBuilder
-import com.academy.fourtk.milhas.builders.programResponseBuilder
+import com.academy.fourtk.milhas.factories.programBuilder
+import com.academy.fourtk.milhas.factories.programResponseBuilder
 import com.academy.fourtk.milhas.dtos.requesties.ProgramRequest
 import com.academy.fourtk.milhas.dtos.responses.ProgramResponse
 import com.academy.fourtk.milhas.exceptions.NotFoundException

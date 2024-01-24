@@ -12,7 +12,7 @@ data class ProgramRequest (
     val name: String,
 
     @field: NotBlank(message = " Required field")
-    @field: Size(min = 9, max = 9, message = " Field requires 09 characters")
+    @field: Size(min = 9, max = 11, message = " Field requires 11 characters")
     @JsonProperty("member_number")
     val memberNumber: String,
 

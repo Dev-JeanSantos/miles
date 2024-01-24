@@ -1,4 +1,4 @@
-package com.academy.fourtk.milhas.builders
+package com.academy.fourtk.milhas.factories
 
 import com.academy.fourtk.milhas.dtos.requesties.PayloadMilesRequest
 import com.academy.fourtk.milhas.dtos.responses.PayloadEmissionResponse

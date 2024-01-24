@@ -1,6 +1,6 @@
 package com.academy.fourtk.milhas.services.impl
 
-import com.academy.fourtk.milhas.builders.payloadResponseBuilder
+import com.academy.fourtk.milhas.factories.payloadResponseBuilder
 import com.academy.fourtk.milhas.dtos.requesties.PayloadEmissionRequest
 import com.academy.fourtk.milhas.dtos.responses.PayloadEmissionResponse
 import com.academy.fourtk.milhas.entitites.Emission

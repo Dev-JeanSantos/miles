@@ -48,6 +48,13 @@
 			<version>4.2.1</version>
 		</dependency>
 
+		<!-- data-mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.23</version>
+		</dependency>
+
 		<!-- h2 -->
 		<dependency>
 			<groupId>com.h2database</groupId>

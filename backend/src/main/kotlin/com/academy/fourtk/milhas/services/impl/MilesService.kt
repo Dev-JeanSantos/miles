@@ -1,7 +1,7 @@
 package com.academy.fourtk.milhas.services.impl
 
-import com.academy.fourtk.milhas.builders.milesBuilder
-import com.academy.fourtk.milhas.builders.milesResponseBuilder
+import com.academy.fourtk.milhas.factories.milesBuilder
+import com.academy.fourtk.milhas.factories.milesResponseBuilder
 import com.academy.fourtk.milhas.dtos.CardMileAccumulationRequest
 import com.academy.fourtk.milhas.dtos.entities.Ok
 import com.academy.fourtk.milhas.dtos.requesties.MilesRequest
